@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "mentor-practice"
+version = "0.1.0"
+description = ""
+authors = ["DanyloSolohub <danylo.solohub.te.2019@lpnu.ua>"]
+readme = "README.md"
+packages = [{include = "mentor_practice"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
