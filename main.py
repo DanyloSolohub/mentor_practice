@@ -94,6 +94,10 @@ def save_data_to_json(data):
 
 
 def main():
+    STORAGE_DIR.mkdir(exist_ok=True)
+    if not FILE_STORAGE.exists():
+        with open(FILE_STORAGE, 'w') as f:
+            json.dump({}, f)
     http_server = Thread(target=run_http_server)
     socket_sever = Thread(target=run_socket_server)
     http_server.start()
