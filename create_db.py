@@ -21,7 +21,7 @@ def date_range(start: date, end: date) -> list:
 
 
 def create_db(path):
-    # перевіряєм чи існує
+    # перевіряєм чи існує бд
     if not os.path.exists(f'{os.path.basename(path).split(".")[0]}.db'):
         # якщо бд немає - читаєм файл зі скриптом переданий в аргументі функції
         with open(path) as f:

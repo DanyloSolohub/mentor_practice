@@ -12,8 +12,8 @@ CREATE TABLE groups (
     id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
     name STRING UNIQUE
 );
--- Table: ratings
-DROP TABLE IF EXISTS ratings;
+-- Table: grades
+DROP TABLE IF EXISTS grades;
 CREATE TABLE grades (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     student_id REFERENCES students (id),
