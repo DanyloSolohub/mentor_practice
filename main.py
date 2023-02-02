@@ -41,4 +41,7 @@ def main():
 
 
 if __name__ == '__main__':
-    exit(main())
+    try:
+        exit(main())
+    except KeyboardInterrupt:
+        exit()
