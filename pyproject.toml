@@ -8,6 +8,9 @@ packages = [{include = "mentor_practice"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+aiohttp = "^3.8.3"
+websockets = "^10.4"
+names = "^0.3.0"
 
 
 [build-system]
