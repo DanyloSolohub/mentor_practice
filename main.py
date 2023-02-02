@@ -7,11 +7,11 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from pathlib import Path
 from threading import Thread
 
-HTTP_IP = '127.0.0.1'
+HTTP_IP = '0.0.0.0'
 HTTP_PORT = 3000
 SOCKET_IP = '127.0.0.1'
 SOCKET_PORT = 5000
-STORAGE_DIR = Path().joinpath('storage')
+STORAGE_DIR = Path('storage')
 FILE_STORAGE = STORAGE_DIR / 'data.json'
 
 
@@ -23,7 +23,7 @@ class HttpHandler(BaseHTTPRequestHandler):
         elif pr_url.path == '/message.html':
             self.send_html_file('message.html')
         else:
-            if Path().joinpath(pr_url.path[:1]).exists():
+            if Path(pr_url.path[:1]).exists():
                 self.send_static(pr_url.path)
             else:
                 self.send_html_file('error.html', 404)
