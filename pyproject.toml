@@ -8,6 +8,7 @@ packages = [{include = "mentor_practice"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+faker = "^16.6.1"
 
 
 [build-system]
