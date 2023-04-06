@@ -1,0 +1,23 @@
+{% extends 'quote/base.html' %}
+
+{% block title %}{{ author.fullname }}{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="author-details">
+        <h3 class="author-title">{{ author.fullname }}</h3>
+        <p><strong>Born:</strong>
+          <span class="author-born-date">{{ author.born_date }}</span>
+          <span class="author-born-location">{{ author.born_location }}</span></p>
+        <p><strong>Description:</strong></p>
+        <div class="author-description">
+            {{ author.description }}
+        </div>
+        {% if user.id == author.user_id %}
+            <div class="quote-actions mt-3">
+                <a href="{% url 'quote:edit-author' author.pk %}" class="btn btn-warning mr-2">Edit</a>
+            </div>
+        {% endif %}
+    </div>
+  </div>
+{% endblock %}

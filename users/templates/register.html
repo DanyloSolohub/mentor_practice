@@ -1,0 +1,43 @@
+{% extends "quote/base.html" %}
+
+{% block content %}
+<div class="container">
+    <form class="login-form" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.first_name.id_for_label }}">First Name</label>
+            {{ form.first_name }}
+            <span>{{form.errors.first_name}}</span>
+        </div>
+        <div class="form-group">
+            <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+            {{ form.last_name }}
+            <span>{{form.errors.last_name}}</span>
+        </div>
+        <div class="form-group">
+            <label for="{{ form.username.id_for_label }}">Username</label>
+            {{ form.username }}
+            <span>{{form.errors.username}}</span>
+        </div>
+        <div class="form-group">
+            <label for="{{ form.email.id_for_label }}">Email</label>
+            {{ form.email }}
+            <span>{{form.errors.email}}</span>
+        </div>
+        <div class="form-group">
+            <label for="{{ form.password1.id_for_label }}">Password</label>
+            {{ form.password1 }}
+            <span>{{form.errors.password1}}</span>
+        </div>
+        <div class="form-group">
+            <label for="{{ form.password2.id_for_label }}">Confirm password</label>
+            {{ form.password2 }}
+            <span>{{form.errors.password2}}</span>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

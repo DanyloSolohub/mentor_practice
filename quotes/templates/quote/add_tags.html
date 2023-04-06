@@ -1,0 +1,21 @@
+{% extends "quote/base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <form method="POST" action="{% url 'quote:add-tags' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Enter the tag name:
+                {{form.name}}
+            </label>
+            <span>{{ form.errors.name }}</span>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

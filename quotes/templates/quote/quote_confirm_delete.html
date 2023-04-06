@@ -1,0 +1,15 @@
+{% extends 'quote/base.html' %}
+
+{% block title %}Delete quote{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h2>Delete quote</h2>
+    <form method="post">
+      {% csrf_token %}
+      <p>Are you sure you want to delete <b><i>“{{object.quote}}”</i></b>?</p>
+      <button type="submit" class="btn btn-danger">Delete</button>
+      <a href="{% url 'quote:index' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+{% endblock %}

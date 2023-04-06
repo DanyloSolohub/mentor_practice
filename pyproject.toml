@@ -8,7 +8,11 @@ packages = [{include = "mentor_practice"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-
+django = "^4.2"
+django-environ = "^0.10.0"
+psycopg2-binary = "^2.9.5"
+django-bootstrap4 = "^22.3"
+scrapy = "^2.8.0"
 
 [build-system]
 requires = ["poetry-core"]

@@ -1,0 +1,37 @@
+<!-- base.html -->
+<!DOCTYPE html>
+{% load bootstrap4 %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}My quotes!{% endblock %}</title>
+  {% bootstrap_css %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'quote/main.css' %}">
+</head>
+<body>
+  <header>
+    <h1>Quotes</h1>
+    <nav>
+      <ul class="nav-left">
+        <li><a href="/">Quotes</a></li>
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'quote:add-quote' %}">Add quote</a></li>
+          <li><a href="{% url 'quote:add-author' %}">Add author</a></li>
+          <li><a href="{% url 'quote:add-tags' %}">Add tags</a></li>
+        {% endif %}
+      </ul>
+      <ul class="nav-right">
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'users:logout' %}">Logout</a></li>
+        {% else %}
+          <li><a href="{% url 'users:register' %}">Create account</a></li>
+          <li><a href="{% url 'users:login' %}">Login</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

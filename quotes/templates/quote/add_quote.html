@@ -1,0 +1,17 @@
+{% extends "quote/base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <form method="post" class="form">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.as_p }}
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <a href="{% url 'quote:scrape-quotes' %}" class="btn btn-link float-right">Scrape from http://quotes.toscrape.com</a>
+    </form>
+</div>
+{% endblock %}

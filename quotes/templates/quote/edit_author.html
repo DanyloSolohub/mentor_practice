@@ -1,0 +1,16 @@
+{% extends 'quote/base.html' %}
+
+{% block title %}
+Edit Author - {{ object.author }}
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h2>Edit Author</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+{% endblock %}

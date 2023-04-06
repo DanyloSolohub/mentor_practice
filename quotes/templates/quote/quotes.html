@@ -1,0 +1,80 @@
+{% extends 'quote/base.html' %}
+
+{% block title %}
+Quotes
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="my-4">Quotes</h1>
+            {% if by_tag %}
+            <h3>Viewing tag: <a href="{% url 'quote:search-tag' by_tag %}">{{ by_tag }}</a></h3>
+            {% endif %}
+            <ul class="list-group quote-list">
+                {% for quote in page_obj %}
+                <li class="list-group-item quote-item">
+                    <div class="quote-text"><i>“{{ quote.quote }}”</i></div>
+                    <div class="quote-author">by
+                        <a href="{% url 'quote:author' quote.author %}"><b>{{ quote.author }}</b></a>
+                    </div>
+                    <div class="quote-tags">
+                        <small>Tags:</small>
+                        {% for tag in quote.tags.all %}
+                        <span class="badge badge-pill badge-sm badge-warning">
+                        <a href="{% url 'quote:search-tag' tag.name %}"><i>{{ tag.name }}</i></a>
+                      </span>
+                        {% empty %}
+                        <span class="badge badge-pill badge-sm badge-warning">
+                        ---
+                      </span>
+                        {% endfor %}
+                    </div>
+                    {% if user == quote.user %}
+                    <div class="quote-actions mt-3">
+                        <a href="{% url 'quote:edit' quote.id %}?next={{ request.path }}{% if page_obj.has_previous or page_obj.has_next %}?page={{ page_obj.number }}{% endif %}"
+                           class="btn btn-warning mr-2">Edit</a>
+                        <a href="{% url 'quote:remove' quote.id %}?next={{ request.path }}{% if page_obj.has_previous or page_obj.has_next %}?page={{ page_obj.number }}{% endif %}"
+                           class="btn btn-danger">Delete</a>
+                    </div>
+                    {% endif %}
+                </li>
+                {% empty %}
+                <li class="list-group-item">No quotes found.</li>
+                {% endfor %}
+            </ul>
+
+            {% if page_obj.has_previous or page_obj.has_next %}
+            <nav>
+                <ul class="nav-left">
+                    {% if page_obj.has_previous %}
+                    <li class="previous">
+                        <a href="?page={{ page_obj.previous_page_number }}"><span aria-hidden="true">←</span>
+                            Previous</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <ul class="nav-right">
+                    {% if page_obj.has_next %}
+                    <li class="next ml-auto">
+                        <a href="?page={{ page_obj.next_page_number }}">Next <span aria-hidden="true">→</span></a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+        <div class="col-md-4">
+            <h2>Top Ten tags</h2>
+            <ol>
+                {% for tag in top_tags %}
+                <li>
+                    <a href="{% url 'quote:search-tag' tag.name %}">{{ tag.name }}</a>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+</div>
+{% endblock %}
