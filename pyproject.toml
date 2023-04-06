@@ -8,6 +8,7 @@ packages = [{include = "mentor_practice"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+sqlalchemy = "^2.0.9"
 
 
 [build-system]
