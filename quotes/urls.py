@@ -14,4 +14,5 @@ urlpatterns = [
     path('author/<str:author>', views.AuthorView.as_view(), name='author'),
     path('author/add/', views.AuthorView.as_view(), name='add-author'),
     path('author/edit/<int:pk>', views.AuthorUpdateView.as_view(), name='edit-author'),
+    path('example_fill_db', views.example_fill_db, name='example-fill-db'),
 ]

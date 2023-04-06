@@ -7,7 +7,7 @@ from users.forms import RegisterForm
 
 class RegisterView(View):
     form_class = RegisterForm
-    template_name = 'users/register.html'
+    template_name = 'register.html'
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:

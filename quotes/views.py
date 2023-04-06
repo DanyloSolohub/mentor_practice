@@ -1,15 +1,15 @@
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.db import IntegrityError
+from django.db.models import Count
 from django.http import Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.db import IntegrityError
-from django.db.models import Count
-from django.views.generic import UpdateView, DeleteView, View
-from django.core.paginator import Paginator
 from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
+from django.views.generic import UpdateView, DeleteView, View
 
-from quotes.models import Tag, Author, Quote
 from quotes.forms import QuoteForm, TagForm, AuthorForm
+from quotes.models import Tag, Author, Quote
 from quotes.service.scrape_quotes import scrape_quotes
 
 
@@ -202,3 +202,26 @@ class TagView(View):
         tag.user = request.user
         tag.save()
         return redirect(to='quote:index')
+
+
+@login_required
+def example_fill_db(request):
+    author, _ = Author.objects.get_or_create(
+        user=request.user,
+        fullname='fullname',
+        defaults={
+            'born_date': 'born_date',
+            'born_location': 'born_location',
+            'description': 'description',
+        }
+    )
+    tag, _ = Tag.objects.get_or_create(name='Test name')
+    quote, _ = Quote.objects.get_or_create(
+        user=request.user,
+        quote='lorem ipsum',
+        defaults={
+            'author': author
+        }
+    )
+    quote.tags.add(tag)
+    return redirect(to='quote:index')
